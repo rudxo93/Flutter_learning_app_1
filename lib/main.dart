@@ -4,7 +4,7 @@ void main() {
   runApp(MaterialApp(
     home: Scaffold(
       appBar: AppBar(
-        title: Text('Widget을 좌우로 배치하기'),
+        title: Text('Widget을 상 하 좌 우로 배치하기'),
       ),
       body: Body(),
     ),
@@ -17,29 +17,40 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: double.infinity,
-      //child: Column  상하 배치
-      child: Row( // 좌 우 배치
+      width: double.infinity,
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Container(
-            width: 100,
-            height: 80,
-            color: Colors.red,
-            child: Text('Container 1'), // child 는 마지막에 위치하도록 권장..
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 100,
+                height: 80,
+                color: Colors.red,
+                child: Text('Container 1'), // child 는 마지막에 위치하도록 권장..
+              ),
+              Container(
+                width: 100,
+                height: 80,
+                color: Colors.green,
+                child: Text('Container 2'),
+              ),
+              Container(
+                width: 100,
+                height: 80,
+                color: Colors.blue,
+                child: Text('Container 3'),
+              )
+            ],
           ),
           Container(
-            width: 100,
-            height: 80,
-            color: Colors.green,
-            child: Text('Container 2'),
-          ),
-          Container(
-            width: 100,
-            height: 80,
-            color: Colors.blue,
-            child: Text('Container 3'),
+            width: 300,
+            height: 120,
+            color: Colors.grey,
+            child: Text('Container 4'),
           )
         ],
       ),
