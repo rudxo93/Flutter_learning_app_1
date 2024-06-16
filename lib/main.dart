@@ -4,7 +4,7 @@ void main() {
   runApp(MaterialApp(
     home: Scaffold(
       appBar: AppBar(
-        title: Text('Widget을 상하로 배치하기'),
+        title: Text('Widget을 좌우로 배치하기'),
       ),
       body: Body(),
     ),
@@ -17,11 +17,11 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      child: Column(
-        mainAxisSize: MainAxisSize.max, // min - Column의 크기만큼 차지 / max - 남는 영역 모두 사용
-        mainAxisAlignment: MainAxisAlignment.center, // 위젯들이 상/하 기준으로 위치
-        crossAxisAlignment: CrossAxisAlignment.center, // 위젯들이 좌/우 기준으로 위치
+      height: double.infinity,
+      //child: Column  상하 배치
+      child: Row( // 좌 우 배치
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             width: 100,
