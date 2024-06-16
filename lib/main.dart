@@ -4,54 +4,45 @@ void main() {
   runApp(MaterialApp(
     home: Scaffold(
       appBar: AppBar(
-        title: Text('Study to Conainer'),
+        title: Text('Widget을 상하로 배치하기'),
       ),
-      body: CustomContainer(),
+      body: Body(),
     ),
   ));
 }
 
-///  width: double.infinity - 좌 우 끝까지 채운다.. -> match_parent
-///  color: Color(0xFF5E4343) - Color Hex 값 사용 -> 0xFFRGB (FF 투명도, 뒤에 RGB값)
-///  EdgeInsets.symmetric(vertical: 12 ,horizontal: 10) - vertical 상, 하 / horizontal 좌, 우
-///  BoxDecoration 사용 시 밖에 color가 선언될 경우 Error 발생
-class CustomContainer extends StatelessWidget {
-  const CustomContainer({super.key});
+class Body extends StatelessWidget {
+  const Body({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        width: 300,
-        height: 300,
-        //color: Color(0xFFA5E088),
-        padding: EdgeInsets.fromLTRB(10, 12, 10, 12),
-        //margin: EdgeInsets.symmetric(vertical: 12 ,horizontal: 10),
-        decoration: BoxDecoration(
-            color: Color(0xFFA5E088),
-            border: Border.all(
-                color: Colors.red, width: 5, style: BorderStyle.solid),
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.black.withOpacity(0.3),
-                  offset: Offset(6, 6),
-                  blurRadius: 10,
-                  spreadRadius: 10),
-              BoxShadow(
-                  color: Colors.blue.withOpacity(0.3),
-                  offset: Offset(-6, -6),
-                  blurRadius: 10,
-                  spreadRadius: 10)
-            ]),
-        child: Center(
-          child: Container(
-            color: Colors.yellow,
-            child: Text('Hello Container!!'),
+    return Container(
+      width: double.infinity,
+      child: Column(
+        mainAxisSize: MainAxisSize.max, // min - Column의 크기만큼 차지 / max - 남는 영역 모두 사용
+        mainAxisAlignment: MainAxisAlignment.center, // 위젯들이 상/하 기준으로 위치
+        crossAxisAlignment: CrossAxisAlignment.center, // 위젯들이 좌/우 기준으로 위치
+        children: [
+          Container(
+            width: 100,
+            height: 80,
+            color: Colors.red,
+            child: Text('Container 1'), // child 는 마지막에 위치하도록 권장..
           ),
-        ),
+          Container(
+            width: 100,
+            height: 80,
+            color: Colors.green,
+            child: Text('Container 2'),
+          ),
+          Container(
+            width: 100,
+            height: 80,
+            color: Colors.blue,
+            child: Text('Container 3'),
+          )
+        ],
       ),
     );
-    {}
   }
 }
